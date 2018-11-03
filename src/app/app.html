@@ -1,0 +1,48 @@
+<ion-menu [content]="content" id="menu-dark">
+  <!--   <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <ion-header class="sidemenuHeader">
+    <ion-toolbar>
+      <ion-item no-lines>
+        <ion-avatar item-left>
+          <h2>{{user?.name.substring(0,1)}}</h2>
+        </ion-avatar>
+        <h2>Hello, {{user?.name}}</h2>        
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="menu">
+    <button menuClose class="exp_button" no-lines ion-item (click)="logOut()">
+      Logout &nbsp; <ion-icon name="log-out"></ion-icon>
+    </button>
+
+    <ion-list no-lines>
+      <ion-list-header class="exp_button">Personal</ion-list-header>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon [name]="p.icon" item-start></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+
+
+    <ion-list no-lines>
+      <ion-list-header class="exp_button">General</ion-list-header>
+      <button menuClose ion-item *ngFor="let p of more_pages" (click)="openPage(p)">
+        <ion-icon [name]="p.icon" item-start></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+
+    <!-- <img class="user-avatar round" [src]="chosenPicture || placeholder" onerror="this.src='assets/images/custorfy-logo-400.png'"
+      /> -->
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

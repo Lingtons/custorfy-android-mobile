@@ -1,0 +1,22 @@
+page-vendor-detail {
+    .header .col {
+        background-color:#eee;
+        border-bottom-style: none;
+        
+        
+    }
+    
+    .col {
+        border: solid 1px lightgrey;
+        border-right-style: none;        
+     
+    }
+    
+    .col:last-child {
+        border-right: solid 1px lightgrey;
+    }
+    
+    .row:last-child .col {
+        border-bottom: solid 1px lightgrey;
+    }
+}

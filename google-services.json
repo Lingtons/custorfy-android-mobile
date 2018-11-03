@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "592134572999",
+    "firebase_url": "https://custorfy-mobile.firebaseio.com",
+    "project_id": "custorfy-mobile",
+    "storage_bucket": "custorfy-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592134572999:android:ca9d715feda37afb",
+        "android_client_info": {
+          "package_name": "com.custorfy.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592134572999-c0m2d9ku8i97gj6ttn252iioiqjs8mdo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXxLJ5Bxh6SlK2roszMJv5y1F0QV7MXR8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

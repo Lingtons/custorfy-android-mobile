@@ -1,0 +1,61 @@
+<!--
+  Generated template for the AccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar padding no-border-bottom>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>My Account</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="PresentPopover($event)">
+        <ion-icon ios="md-more" md="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-grid *ngIf="user">
+      <ion-row>
+        <ion-col width-100>
+          <img src="assets/images/man.svg" height="200" />
+
+          <ion-badge item-end>{{user?.point | number }} CC </ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </ion-card>
+
+  <ion-grid *ngIf="user">
+    <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <strong>Name:</strong> {{user?.name}}
+          </ion-item>
+          <ion-item>
+            <strong>Email:</strong> {{user?.email}}
+          </ion-item>
+          <ion-item>
+            <strong>Phone:</strong> {{user?.phone}}
+          </ion-item>
+          <ion-item>
+            <strong>Points:</strong> {{user?.point | number}}
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

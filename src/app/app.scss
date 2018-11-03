@@ -1,0 +1,147 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+/*  .side-menu{
+    background-image:  url("http://www.planwallpaper.com/static/images/colorful-triangles-background_yB0qTG6.jpg");
+    background-repeat: repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+
+    ion-button, .item, .item-block, .item-md{
+    background-color: transparent !important;
+    color: #fff;
+} 
+} */
+
+
+/* ion-list, .trans, .list, .list-md {
+    background-color: transparent !important;
+    color: #fff;
+} 
+ */
+
+$sidemenu_color : #474456;
+$header_color : #000;
+$custorfy : #345279;
+
+
+#menu-dark {
+
+  .sidemenuHeader {
+    ion-toolbar {
+      .toolbar-background {
+        background: $custorfy;
+        border: $sidemenu_color;
+      }
+
+      ion-buttons {
+        button {
+          color: $custorfy;
+        }
+      }
+
+      .toolbar-content {
+        ion-item {
+          background: transparent;
+          color: #fafafa;
+
+          ion-avatar {
+            background: #fff;
+            color: $header_color;
+            border-radius: 50%;
+            text-align: center;
+
+            h2 {
+              margin: 0;
+              font-size: 25px;
+              line-height: 40px;
+              color: $sidemenu_color;
+            }
+          }
+
+          h2 {
+            font-size: 12px;
+            font-weight: normal;
+          }
+
+          p {
+            font-size: 11px;
+            font-weight: normal;
+            color: gray;
+          }
+        }
+      }
+    }
+  }
+
+
+  .menu {
+    /* background-image: url("../assets/images/sidemenu-blue.jpg"); */
+    background: #fff;
+    /* fallback for old browsers */
+    /* background: -webkit-linear-gradient(to top,  #dbe6f6, #488aff);  /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to top left, #488aff, #488aff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+
+
+
+
+
+    /*  background-repeat: repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%; */
+    position: absolute;
+
+    ion-list {
+      button {
+        background: transparent;
+        color: $custorfy;
+
+        .item-inner {
+          /* border-bottom: 1px solid #37474f !important; */
+
+          img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 10px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+
+    .list-header {
+      padding-left: 16px;
+      margin-bottom: 0px;
+      min-height: 4.5rem;
+      border-top: 0px solid #9575cd;
+      font-size: 1.4rem;
+      /* color: #757575; */
+    }
+
+    .exp_button {
+      background: transparent;
+      color: gray;
+    }
+  }
+}

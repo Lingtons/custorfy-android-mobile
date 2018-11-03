@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-navbar padding no-border-bottom>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>My Complaints</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="PresentPopover($event)">
+          <ion-icon ios="md-more" md="md-more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-list *ngIf="complains?.length > 0">
+    <ion-item *ngFor="let complain of complains" (click) = "openThread(complain)" >
+      <ion-avatar item-start>
+        <img src="assets/images/cservice.svg" />
+      </ion-avatar>
+      <h2 ion-text color="custorfy">{{complain?.subject}} </h2>
+      <p>{{complain?.created_at | date : 'fullDate'}} - {{complain?.status == 1 ? 'open' : 'closed'}}</p>
+    </ion-item>
+
+  </ion-list>
+  <ion-item text-center *ngIf="complains?.length < 1">No complains were found </ion-item>
+  <ion-fab bottom right #fab1>
+    <button ion-fab color="danger" (click) = "complainCreatePage()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

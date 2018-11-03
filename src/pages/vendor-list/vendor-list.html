@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-navbar padding no-border-bottom>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>Products & Service Providers</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="PresentPopover($event)">
+          <ion-icon ios="md-more" md="md-more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search" (ionInput)="setSearchedVendors()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+
+  <ion-list>
+
+    <ion-item *ngFor="let vendor of vendors" (click) = "viewVendor(vendor)">
+      <ion-avatar item-start>
+          <img src="assets/images/trolley.svg" />
+        <!-- <ion-icon name="ios-card" item-start></ion-icon> -->
+      </ion-avatar>
+      <h3 ion-text color="custorfy">{{vendor?.name}}</h3>
+      <p>{{vendor?.category?.name}}</p>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

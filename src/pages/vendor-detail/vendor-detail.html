@@ -1,0 +1,45 @@
+<!--
+  Generated template for the VendorDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{vendor?.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-label>Discount Rates</ion-label>
+  <div class="row header">
+    <div class="col">Category</div>
+    <div class="col">From</div>
+    <div class="col">To</div>
+    <div class="col">Rate</div>
+  </div>
+  <div class="row" *ngFor="let discount of vendor?.discounts">
+    <div class="col">{{discount?.service_type?.name}}</div>
+    <div class="col">{{discount?.lowerlimit | number}}</div>
+    <div class="col">{{discount?.upperlimit | number}}</div>
+    <div class="col" style="width:5px;">{{(discount?.discount_rate*0.7)}}%</div>
+  </div>
+
+  <ion-label>Branches / Locations</ion-label>
+
+  <div class="row header">
+    <div class="col">Town</div>
+    <div class="col">Address</div>
+
+  </div>
+  <div class="row" *ngFor="let branch of vendor?.branches">
+    <div class="col">{{branch?.town}}</div>
+    <div class="col">{{branch?.address}}</div>
+  </div>
+
+
+</ion-content>

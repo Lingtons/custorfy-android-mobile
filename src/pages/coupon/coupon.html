@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-navbar padding no-border-bottom>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>My Coupons</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="PresentPopover($event)">
+          <ion-icon ios="md-more" md="md-more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-list *ngIf="coupons?.length > 0">
+
+    <ion-item *ngFor="let coupon of coupons" (click)="viewCoupon(coupon)">
+      <ion-avatar item-start>
+        <img src="assets/images/coupon.svg" />
+      </ion-avatar>
+      <h2 ion-text color="custorfy">{{coupon?.voucher}} - NGN{{coupon?.value | number}}</h2>
+      <p>{{coupon?.created_at | date : 'fullDate'}}</p>
+    </ion-item>
+
+  </ion-list>
+  <ion-item text-center *ngIf="coupons?.length < 1">No coupons were found </ion-item>
+
+  <ion-fab bottom right #fab1>
+    <button ion-fab color="danger" (click) = "couponCreatePage()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-navbar padding no-border-bottom>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>New Coupon Request</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="PresentPopover($event)">
+          <ion-icon ios="md-more" md="md-more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+
+<form padding [formGroup]="couponForm" (ngSubmit)="onSubmit(couponForm.value)">
+  <ion-col col-12>
+    <div input-field>
+      <ion-item no-padding>
+        <ion-label floating>Amount</ion-label>
+        <ion-input type="number"  formControlName="amount"></ion-input>
+      </ion-item>
+    </div>
+
+    <div input-field>
+      <ion-item no-padding>
+        <ion-label floating>Vendor</ion-label>
+        <ion-select formControlName="vendor" [(ngModel)]="sVendor" (ionChange)="setBranchValues(sVendor)" >
+          <ion-option [value]="sVendor" *ngFor="let sVendor of vendors">{{sVendor.name}} </ion-option>
+      </ion-select>
+      </ion-item>
+    </div>
+
+    <div input-field>
+      <ion-item *ngIf="selectedBranches" no-padding>
+        <ion-label floating>Branch</ion-label>
+        <ion-select formControlName="branch" [(ngModel)]="sBranch" >
+            <ion-option [value]="sBranch" *ngFor="let sBranch of selectedBranches">{{sBranch.name}}</ion-option>
+        </ion-select>
+     </ion-item>
+    </div>
+
+
+    <!-- Login button -->
+    <ion-col col-12 no-padding>
+      <button no-margin color="custorfy" [disabled]="!couponForm.valid" ion-button full text-uppercase >Submit</button>
+    </ion-col>
+
+  </ion-col>
+</form>
+
+
+  <ion-fab bottom right #fab1>
+    <button ion-fab color="custorfy" (click) = "couponPage()">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

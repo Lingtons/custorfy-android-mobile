@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-navbar padding no-border-bottom>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>My Transactions</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="PresentPopover($event)">
+          <ion-icon ios="md-more" md="md-more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search" (ionInput)="setSearchedTransactions()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="transactions?.length > 0">
+      <p ion-item text-center>use this format "2018-08-06" for date search</p>
+    <ion-item *ngFor="let transaction of transactions" (click) = "viewTransaction(transaction)">
+      <ion-avatar item-start>
+          <img src="assets/images/transaction.svg" />
+        <!-- <ion-icon name="ios-card" item-start></ion-icon> -->
+      </ion-avatar>
+      <h2 ion-text color="custorfy">{{transaction?.created_at | date : 'medium'}}</h2>
+      <h3><del>NGN{{transaction?.actual_amount | number }}</del> -> NGN{{transaction?.customer_payable | number }}  </h3>
+      <p>@{{transaction?.vendor?.name}}</p>
+    </ion-item>
+
+  </ion-list>
+  <ion-item text-center *ngIf="transactions?.length < 1" >No transactions were found </ion-item>
+</ion-content>

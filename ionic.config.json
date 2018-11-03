@@ -1,0 +1,7 @@
+{
+  "name": "Custorfy",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
