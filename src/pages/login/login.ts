@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, MenuController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
 import { LoginService } from '../../services/login-service';
 import { AlertService } from '../../services/alert-service';
@@ -36,7 +36,7 @@ export class LoginPage {
   password: AbstractControl;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public service: LoginService, public formBuilder: FormBuilder, private authService: AuthProvider, public loadingCtrl: LoadingController, private alertCtrl: AlertService, private inAppBrowser: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public service: LoginService, public formBuilder: FormBuilder, private authService: AuthProvider, public loadingCtrl: LoadingController, private alertCtrl: AlertService, private menuCtrl : MenuController, private inAppBrowser: InAppBrowser) {
     this.data = this.service.getDataForLoginPage();
 
     this.loginForm = formBuilder.group({

@@ -1,4 +1,4 @@
-<ion-menu [content]="content" id="menu-dark">
+<ion-menu [content]="content" [swipeEnabled]="false" id="menu-dark">
   <!--   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -11,7 +11,7 @@
         <ion-avatar item-left>
           <h2>{{user?.name.substring(0,1)}}</h2>
         </ion-avatar>
-        <h2>Hello, {{user?.name}}</h2>        
+        <h2>Hello, {{user?.name}}</h2>
       </ion-item>
     </ion-toolbar>
   </ion-header>
@@ -45,4 +45,4 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content [swipeEnabled]="false" swipeBackEnabled="false"></ion-nav>

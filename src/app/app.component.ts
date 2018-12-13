@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, MenuController, Platform, Events, PopoverController } from 'ionic-angular';
+import { Nav, MenuController, Platform, Events, PopoverController,ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NetworkProvider } from '../providers/network/network';
@@ -30,7 +30,7 @@ export class MyApp {
 
 
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events, public popoverCtrl: PopoverController, public network: NetworkProvider, private authService: AuthProvider, private appMinimize: AppMinimize, private firebase: Firebase, private menuCtrl: MenuController,) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events, public popoverCtrl: PopoverController, public network: NetworkProvider, private authService: AuthProvider, private appMinimize: AppMinimize, private firebase: Firebase, private menuCtrl: MenuController, public toastCtrl: ToastController) {
     this.initializeApp();
 
     this.events.subscribe('popover:launch', () => {
@@ -61,8 +61,16 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      try{
+        this.initializeFirebase();
+      } catch (error) {
+        this.firebase.logError(error);
+      }
+
+      this.statusBar.overlaysWebView(false);
+      //this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString('#345279');
+      this.statusBar.show();
 
       this.user = this.authService.logged_user();
 
@@ -87,14 +95,8 @@ export class MyApp {
         this.nav.setRoot(LoginPage);
       }
 
-      if (this.network.isOnline()) {
-        this.network.startWatchingConnection();
-      } else {
-        this.network.alertOffline();
-        this.network.startWatchingConnection();
-      }
 
-/*       this.firebase.getToken()
+/*        this.firebase.getToken()
       .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
       .catch(error => console.error('Error getting token', error));
 
@@ -114,6 +116,47 @@ export class MyApp {
             }
     }); */
 
+    });
+  }
+
+
+  initializeFirebase() {
+    if(!this.platform.is("core")) {
+      this.firebase.subscribe("all");
+      this.platform.is('android') ? this.initializeFirebaseAndroid() : this.initializeFirebaseIOS();
+    }
+  }
+
+  initializeFirebaseAndroid() {
+    this.firebase.getToken().then(token => {});
+    this.firebase.onTokenRefresh().subscribe(token => {})
+    this.subscribeToPushNotifications();
+  }
+initializeFirebaseIOS() {
+    this.firebase.grantPermission()
+    .then(() => {
+      this.firebase.getToken().then(token => {});
+      this.firebase.onTokenRefresh().subscribe(token => {})
+      this.subscribeToPushNotifications();
+    })
+    .catch((error) => {
+      this.firebase.logError(error);
+    });
+  }
+
+  subscribeToPushNotifications() {
+    this.firebase.onNotificationOpen().subscribe((response) => {
+      if(response.tap){
+        //Received while app in background (this should be the callback when a system notification is tapped)
+        //This is empty for our app since we just needed the notification to open the app
+      }else{
+        //received while app in foreground (show a toast)
+        let toast = this.toastCtrl.create({
+          message: response.body,
+          duration: 3000
+        });
+        toast.present();
+      }
     });
   }
 
